@@ -77,11 +77,22 @@ public struct MessageResponse: Decodable {
       public let id: String
       public let name: String
       public let input: Input
+
+      public init(id: String, name: String, input: Input) {
+        self.id = id
+        self.name = name
+        self.input = input
+      }
     }
     
     public struct Thinking: Codable {
       public let thinking: String
       public let signature: String?
+
+      public init(thinking: String, signature: String?) {
+        self.thinking = thinking
+        self.signature = signature
+      }
     }
     
     public struct ServerToolUse: Codable {
@@ -89,6 +100,13 @@ public struct MessageResponse: Decodable {
       public let input: Input
       public let type: String
       public let name: String
+
+      public init(id: String, input: Input, type: String, name: String) {
+        self.id = id
+        self.input = input
+        self.type = type
+        self.name = name
+      }
     }
     
     public struct ToolResult: Codable {
@@ -106,6 +124,12 @@ public struct MessageResponse: Decodable {
         case toolUseId = "tool_use_id"
         case content
         case type
+      }
+
+      public init(toolUseId: String?, content: [ContentItem], type: String) {
+        self.toolUseId = toolUseId
+        self.content = content
+        self.type = type
       }
     }
     
@@ -553,7 +577,23 @@ public struct ContentItem: Codable {
   public let type: String?
   public let url: String?
   public let text: String?
-  
+
+  public init(
+    encryptedContent: String?,
+    title: String?,
+    pageAge: String?,
+    type: String?,
+    url: String?,
+    text: String?
+  ) {
+    self.encryptedContent = encryptedContent
+    self.title = title
+    self.pageAge = pageAge
+    self.type = type
+    self.url = url
+    self.text = text
+  }
+
   var description: String {
     var result = "ContentItem:\n"
     
