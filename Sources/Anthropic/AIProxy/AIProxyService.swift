@@ -44,7 +44,8 @@ struct AIProxyService: AnthropicService {
    {
       self.session = URLSession(
          configuration: .default,
-         delegate: aiproxySecureDelegate,
+         delegate: nil,
+//         delegate: aiproxySecureDelegate,
          delegateQueue: nil
       )
       let decoderWithSnakeCaseStrategy = JSONDecoder()
